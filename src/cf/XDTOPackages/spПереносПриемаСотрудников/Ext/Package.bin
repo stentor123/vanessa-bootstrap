@@ -1,0 +1,59 @@
+﻿<package xmlns="http://v8.1c.ru/8.1/xdto" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://www.sample-package.org/1.10.0">
+	<import namespace="http://www.1c.ru/SSL/Exchange/Message"/>
+	<valueType name="Пол" base="xs:string">
+		<enumeration xsi:type="xs:string">ПолМужской</enumeration>
+		<enumeration xsi:type="xs:string">ПолЖенский</enumeration>
+	</valueType>
+	<valueType xmlns:d2p1="http://www.1c.ru/SSL/Exchange/Message" name="СправочникСсылка.Должности" base="d2p1:Ref"/>
+	<valueType xmlns:d2p1="http://www.1c.ru/SSL/Exchange/Message" name="СправочникСсылка.Сотрудники" base="d2p1:Ref"/>
+	<valueType xmlns:d2p1="http://www.1c.ru/SSL/Exchange/Message" name="ДокументСсылка.ПриемНаРаботу" base="d2p1:Ref"/>
+	<objectType name="ЛюбаяСсылка">
+		<property name="СсылкаНаОбъект">
+			<typeDef xsi:type="ObjectType">
+				<property xmlns:d5p1="http://www.sample-package.org/1.10.0" name="ДолжностиСсылка" type="d5p1:СправочникСсылка.Должности" lowerBound="0"/>
+				<property xmlns:d5p1="http://www.sample-package.org/1.10.0" name="СотрудникиСсылка" type="d5p1:СправочникСсылка.Сотрудники" lowerBound="0"/>
+				<property xmlns:d5p1="http://www.sample-package.org/1.10.0" name="ПриемНаРаботуСсылка" type="d5p1:ДокументСсылка.ПриемНаРаботу" lowerBound="0"/>
+			</typeDef>
+		</property>
+	</objectType>
+	<objectType name="УдалениеОбъекта">
+		<property xmlns:d3p1="http://www.sample-package.org/1.10.0" name="СсылкаНаОбъект" type="d3p1:ЛюбаяСсылка"/>
+	</objectType>
+	<objectType name="Info">
+		<property name="Date" type="xs:date"/>
+		<property name="PostDocuments" type="xs:boolean"/>
+	</objectType>
+	<objectType name="КлючевыеСвойстваДолжности">
+		<property xmlns:d3p1="http://www.sample-package.org/1.10.0" name="Ссылка" type="d3p1:СправочникСсылка.Должности"/>
+	</objectType>
+	<objectType name="КлючевыеСвойстваСотрудники">
+		<property xmlns:d3p1="http://www.sample-package.org/1.10.0" name="Ссылка" type="d3p1:СправочникСсылка.Сотрудники"/>
+		<property name="ФИО" type="xs:string"/>
+	</objectType>
+	<objectType name="КлючевыеСвойстваПриемНаРаботу">
+		<property xmlns:d3p1="http://www.sample-package.org/1.10.0" name="Ссылка" type="d3p1:ДокументСсылка.ПриемНаРаботу"/>
+		<property name="Дата" type="xs:dateTime"/>
+		<property name="Номер" type="xs:string"/>
+	</objectType>
+	<objectType xmlns:d2p1="http://www.1c.ru/SSL/Exchange/Message" name="Справочник.Должности" base="d2p1:Object">
+		<property xmlns:d3p1="http://www.sample-package.org/1.10.0" name="КлючевыеСвойства" type="d3p1:КлючевыеСвойстваДолжности"/>
+		<property name="Наименование" type="xs:string"/>
+	</objectType>
+	<objectType xmlns:d2p1="http://www.1c.ru/SSL/Exchange/Message" name="Справочник.Сотрудники" base="d2p1:Object">
+		<property xmlns:d3p1="http://www.sample-package.org/1.10.0" name="КлючевыеСвойства" type="d3p1:КлючевыеСвойстваСотрудники"/>
+		<property name="ДатаРождения" type="xs:date"/>
+		<property xmlns:d3p1="http://www.sample-package.org/1.10.0" name="Пол" type="d3p1:Пол"/>
+	</objectType>
+	<objectType xmlns:d2p1="http://www.1c.ru/SSL/Exchange/Message" name="Документ.ПриемНаРаботу" base="d2p1:Object">
+		<property xmlns:d3p1="http://www.sample-package.org/1.10.0" name="КлючевыеСвойства" type="d3p1:КлючевыеСвойстваПриемНаРаботу"/>
+		<property xmlns:d3p1="http://www.sample-package.org/1.10.0" name="Должность" type="d3p1:КлючевыеСвойстваДолжности"/>
+		<property xmlns:d3p1="http://www.sample-package.org/1.10.0" name="Сотрудники" type="d3p1:Документ.ПриемНаРаботу.Сотрудники"/>
+	</objectType>
+	<objectType name="Документ.ПриемНаРаботу.Сотрудники">
+		<property xmlns:d3p1="http://www.sample-package.org/1.10.0" name="Строка" type="d3p1:Документ.ПриемНаРаботу.Сотрудники.Строка" upperBound="-1"/>
+	</objectType>
+	<objectType name="Документ.ПриемНаРаботу.Сотрудники.Строка">
+		<property xmlns:d3p1="http://www.sample-package.org/1.10.0" name="Сотрудник" type="d3p1:КлючевыеСвойстваСотрудники"/>
+		<property name="Оклад" type="xs:decimal"/>
+	</objectType>
+</package>

@@ -1,0 +1,27 @@
+﻿<package xmlns="http://v8.1c.ru/8.1/xdto" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://www.sample-package.org">
+	<valueType name="Пол" base="xs:string">
+		<enumeration xsi:type="xs:string">ПолМужской</enumeration>
+		<enumeration xsi:type="xs:string">ПолЖенский</enumeration>
+	</valueType>
+	<objectType name="Должности">
+		<property name="Наименование" type="xs:string"/>
+	</objectType>
+	<objectType name="Сотрудники">
+		<property name="ФИО" type="xs:string"/>
+		<property name="ДатаРождения" type="xs:date"/>
+		<property xmlns:d3p1="http://www.sample-package.org" name="Пол" type="d3p1:Пол"/>
+	</objectType>
+	<objectType name="ПриемНаРаботу">
+		<property name="Дата" type="xs:dateTime"/>
+		<property name="Номер" type="xs:string"/>
+		<property xmlns:d3p1="http://www.sample-package.org" name="Должность" type="d3p1:Должности"/>
+		<property xmlns:d3p1="http://www.sample-package.org" name="Сотрудники" type="d3p1:ПриемНаРаботу.Сотрудники"/>
+	</objectType>
+	<objectType name="ПриемНаРаботу.Сотрудники">
+		<property xmlns:d3p1="http://www.sample-package.org" name="Строка" type="d3p1:ПриемНаРаботу.Сотрудники.Строка" upperBound="-1"/>
+	</objectType>
+	<objectType name="ПриемНаРаботу.Сотрудники.Строка">
+		<property xmlns:d3p1="http://www.sample-package.org" name="Сотрудник" type="d3p1:Сотрудники"/>
+		<property name="Оклад" type="xs:decimal"/>
+	</objectType>
+</package>
