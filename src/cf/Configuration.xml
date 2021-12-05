@@ -194,7 +194,12 @@
 			<DefaultInterface/>
 			<DefaultStyle/>
 			<DefaultLanguage>Language.Русский</DefaultLanguage>
-			<BriefInformation/>
+			<BriefInformation>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>...</v8:content>
+				</v8:item>
+			</BriefInformation>
 			<DetailedInformation/>
 			<Copyright/>
 			<VendorInformationAddress/>
@@ -610,6 +615,7 @@
 			<Catalog>ВидыДоговоров</Catalog>
 			<Catalog>Сотрудники</Catalog>
 			<Catalog>ДолжностиСотрудников</Catalog>
+			<Catalog>Справочник1</Catalog>
 			<Document>ОприходованиеИзлишковТоваров</Document>
 			<Document>ПКО</Document>
 			<Document>РКО</Document>
