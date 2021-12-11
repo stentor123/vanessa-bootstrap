@@ -10,7 +10,9 @@ pipeline
  
     post {
         always {
-
+            allure includeProperties: false, jdk: '', results: [[path: 'out/syntax-check/allure']]
+            junit allowEmptyResults: true, testResults: 'out/syntax-check/junit/junit.xml'
+            junit allowEmptyResults: true, testResults: 'out/*.xml' 
        }
     
         failure {
@@ -30,7 +32,7 @@ pipeline
         }        
         stage("Синтаксический контроль") {
             steps {
-                bat "chcp 65001\n vrunner syntax-check"
+                bat "echo chcp 65001\n vrunner syntax-check"
  
             }
         }
