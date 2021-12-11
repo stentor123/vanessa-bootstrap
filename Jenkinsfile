@@ -24,7 +24,7 @@ pipeline
     stages {
         stage("Создание тестовой базы") {
             steps {
-                bat "echo success"
+                bat "chcp 65001\n vrunner init-dev --dt C:\\tools\\MYTEST\\build\\course.dt --db-user Администратор --db-pwd 123 --src C:\\tools\\J\\src\\cf"
  
             }
         }
