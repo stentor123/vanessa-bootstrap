@@ -10,8 +10,8 @@ pipeline
  
     post {
         always {
-            bat "echo allure includeProperties: false, jdk: '', results: [[path: 'out/syntax-check/allure']]"
-            bat "echo junit allowEmptyResults: true, testResults: 'out/syntax-check/junit/junit.xml'"
+            allure includeProperties: false, jdk: '', results: [[path: 'out/syntax-check/allure']]
+            junit allowEmptyResults: true, testResults: 'out/syntax-check/junit/junit.xml'
         }
     
         failure {
@@ -28,8 +28,7 @@ pipeline
                 bat "chcp 65001\n vrunner init-dev --dt C:\\tools\\MYTEST\\build\\course.dt --db-user Администратор --db-pwd 123 --src C:\\tools\\J\\src\\cf"
  
             }
-        }
-        
+                
         stage("Синтаксический контроль") {
             steps {
                 bat "vrunner syntax-check"
