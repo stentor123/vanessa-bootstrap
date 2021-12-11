@@ -28,7 +28,7 @@ pipeline
                 bat "chcp 65001\n vrunner init-dev --dt C:\\tools\\MYTEST\\build\\course.dt --db-user Администратор --db-pwd 123 --src C:\\tools\\J\\src\\cf"
  
             }
-                
+        }        
         stage("Синтаксический контроль") {
             steps {
                 bat "vrunner syntax-check"
