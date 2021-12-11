@@ -36,14 +36,6 @@ pipeline
  
             }
         }
+    }    
 
-    stage("Sonar") {
-            steps {
-                script{
-                       scannerHome = tool 'sonar-scanner'
-                }
-            }
-        }
-
-    }
 }
