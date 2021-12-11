@@ -10,7 +10,7 @@ pipeline
  
     post {
         always {
-            allure includeProperties: false, jdk: '', results: [[path: 'out/syntax-check/allure']]
+            allure includeProperties: false, jdk: '', results: [[path: 'out/syntax-check/allure'], [path: 'out/allure/smoke'], [path: 'out/allure']]
             junit allowEmptyResults: true, testResults: 'out/syntax-check/junit/junit.xml'
             junit allowEmptyResults: true, testResults: 'out/*.xml' 
        }
@@ -29,13 +29,34 @@ pipeline
                 bat "chcp 65001\n vrunner init-dev --dt C:\\tools\\MYTEST\\build\\course.dt --db-user Администратор --db-pwd 123 --src C:\\tools\\MYTEST\\src\\cf"
  
             }
-        }        
+        } 
+
         stage("Синтаксический контроль") {
             steps {
-                bat "chcp 65001\n echo vrunner syntax-check"
+               script {
+                    try {
+                        bat "chcp 65001\n vrunner syntax-check"
+
+                    } catch(Exception Exc) {
+                        currenBuild.result = 'UNSTABLE'
+                    }   
+               }
  
             }
         }
+
+        stage("Дымовые тесты") {
+            steps {
+               script {
+                    try {
+                            bat "chcp 65001\n runner xunit"
+
+                    } catch(Exception Exc) {
+                        currenBuild.result = 'UNSTABLE'
+                    }   
+               }
+ 
+            }
     }    
 
 }
