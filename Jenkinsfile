@@ -28,7 +28,13 @@ pipeline
  
             }
         }
-
+        
+        stage("Синтаксический контроль") {
+            steps {
+                bat "vrunner syntax-check"
+ 
+            }
+        }
 
     stage("Sonar") {
             steps {
