@@ -69,7 +69,7 @@ pipeline
             steps {
                 script{
                     try {
-                        bat "chcp 65001\n runner run --ibconnection /FC:\\tools\\ACC\\ --db-user \"Администратор\" --db-pwd \"\"  --command \"acc.catalog=${WORKSPACE};acc.propertiesPaths=./tools/acc-export/acc.properties;\" --execute \"./tools/acc-export/acc-export.epf\" --ordinaryapp=1"
+                        bat "chcp 65001\n runner run --ibconnection /FC:\\tools\\acc --db-user \"Administrator\" --db-pwd \"\" --ordinaryapp 1 --command \"acc.propertiesPaths=C:\\tools\\MYTEST\\tools\\acc-export\\acc.properties;" --execute \"C:\\tools\\MYTEST\\tools\\acc-export\\acc-export.epf"
                     } catch(Exception Exc) {
                          currentBuild.result = 'UNSTABLE'
                     }
