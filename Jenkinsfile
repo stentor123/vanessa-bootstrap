@@ -104,7 +104,7 @@ pipeline
                     try {
                         bat """chcp 65001
                         call vrunner compileepf tests tests
-                        call vrunner xunit --settings ./env-tests.json""""
+                        call vrunner xunit --settings ./env-tests.json"""
                     } catch(Exception Exc) {
                          currentBuild.result = 'UNSTABLE'
                     }
