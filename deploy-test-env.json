@@ -1,0 +1,9 @@
+{
+    "$schema": "https://raw.githubusercontent.com/vanessa-opensource/vanessa-runner/develop/vanessa-runner-schema.json",
+    "default": {
+        "--ibconnection": "/FC:\\tools\\Deploy\\Test",
+        "--db-user": "Администратор",
+        "--db-pwd": "123",
+        "--runnerRoot": "C:\\Program Files\\OneScript\\lib\\vanessa-runner"
+    }
+}
