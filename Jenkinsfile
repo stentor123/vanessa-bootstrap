@@ -96,8 +96,6 @@ pipeline
             }
         }
 
-    }
-
     stage("Модульные тесты") {
             steps {
                 script{
@@ -112,5 +110,6 @@ pipeline
  
             }
         }
+    }
 
 }
